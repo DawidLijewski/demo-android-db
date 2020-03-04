@@ -1,7 +1,6 @@
 package lijewski.demodb.data.repository
 
 import lijewski.demodb.data.source.db.EmployeeDao
-import lijewski.demodb.data.source.entity.EmployeeEntity
 import lijewski.demodb.data.source.mapper.EmployeeMapper
 import lijewski.demodb.domain.model.Employee
 import lijewski.demodb.domain.repository.EmployeeRepository
@@ -16,7 +15,7 @@ class EmployeeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addEmployeeList(employeeList: List<Employee>) {
-        val employeeEntityList = mapEmployeeListToEntitiyList(employeeList)
+        val employeeEntityList = employeeMapper.mapToEntityList(employeeList)
         employeeDao.addEmployee(employeeEntityList)
     }
 
@@ -25,7 +24,7 @@ class EmployeeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun editEmployeeList(employeeList: List<Employee>) {
-        val employeeEntityList = mapEmployeeListToEntitiyList(employeeList)
+        val employeeEntityList = employeeMapper.mapToEntityList(employeeList)
         employeeDao.editEmployee(employeeEntityList)
     }
 
@@ -34,30 +33,17 @@ class EmployeeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun removeEmployeeList(employeeList: List<Employee>) {
-        val employeeEntityList = mapEmployeeListToEntitiyList(employeeList)
+        val employeeEntityList = employeeMapper.mapToEntityList(employeeList)
         employeeDao.deleteEmployee(employeeEntityList)
     }
 
     override suspend fun getEmployee(firstName: String, lastName: String): List<Employee> {
         val employeeEntityList = employeeDao.getEmployee(firstName, lastName)
-        return mapEntityListToEmployee(employeeEntityList)
+        return employeeMapper.mapFromEntityList(employeeEntityList)
     }
 
     override suspend fun selectAllEmployees(): List<Employee> {
         val employeeEntityList = employeeDao.getAllEmployees()
-        return mapEntityListToEmployee(employeeEntityList)
-    }
-
-    //TODO: move to mapper
-    private fun mapEntityListToEmployee(employeeEntityList: List<EmployeeEntity>): List<Employee> {
-        return employeeEntityList.map {
-            employeeMapper.mapFromEntity(it)
-        }
-    }
-    //TODO: move to mapper
-    private fun mapEmployeeListToEntitiyList(employeeList: List<Employee>): List<EmployeeEntity> {
-        return employeeList.map {
-            employeeMapper.mapToEntity(it)
-        }
+        return employeeMapper.mapFromEntityList(employeeEntityList)
     }
 }
