@@ -29,11 +29,11 @@ class EmployeeRepositoryImpl @Inject constructor(
         employeeDao.editEmployee(employeeEntityList)
     }
 
-    override suspend fun deleteEmployee(employee: Employee) {
+    override suspend fun removeEmployee(employee: Employee) {
         employeeDao.deleteEmployee(employeeMapper.mapToEntity(employee))
     }
 
-    override suspend fun deleteEmployeeList(employeeList: List<Employee>) {
+    override suspend fun removeEmployeeList(employeeList: List<Employee>) {
         val employeeEntityList = mapEmployeeListToEntitiyList(employeeList)
         employeeDao.deleteEmployee(employeeEntityList)
     }
