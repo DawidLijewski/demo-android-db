@@ -1,4 +1,4 @@
-package lijewski.demodb.domain.usecase
+package lijewski.demodb.domain.usecase.employee
 
 import lijewski.demodb.domain.common.BaseUseCase
 import lijewski.demodb.domain.model.Employee

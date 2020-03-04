@@ -4,7 +4,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import lijewski.demodb.domain.model.Employee
-import lijewski.demodb.domain.usecase.GetAllEmployeesUseCase
+import lijewski.demodb.domain.usecase.employee.GetAllEmployeesUseCase
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
