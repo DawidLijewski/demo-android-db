@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TemplateAndroid</string>
+
+    <string name="firstname_hint">First name</string>
+    <string name="lastname_hint">Last name</string>
+    <string name="birthdate_hint">Birthdate</string>
+    <string name="gender_hint">Gender</string>
+    <string name="gender_none">-</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
 </resources>
