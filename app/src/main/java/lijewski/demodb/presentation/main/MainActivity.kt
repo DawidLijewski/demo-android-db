@@ -11,8 +11,7 @@ import lijewski.demodb.app.R
 import lijewski.demodb.presentation.add.AddEmployeeDialogFragment
 import javax.inject.Inject
 
-
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
+class MainActivity : AppCompatActivity(), HasAndroidInjector, DialogInterface {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
@@ -40,10 +39,15 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     private fun openAddEmployeeDialog() {
+        fab.hide()
+
         val addEmployeeDialogFragment = AddEmployeeDialogFragment()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         transaction.add(android.R.id.content, addEmployeeDialogFragment).addToBackStack(null).commit()
     }
 
+    override fun onCloseDialog() {
+        fab.show()
+    }
 }

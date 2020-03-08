@@ -10,8 +10,6 @@ ext {
 
     lifecycle_version = '2.2.0'
 
-    adapters_version ='3.6.1'
-
     timber_version = '4.7.1'
 
     coroutines_version = '1.3.3'
@@ -47,10 +45,6 @@ ext {
             material       : "com.google.android.material:material:$material_version",
             navigation     : "androidx.navigation:navigation-fragment-ktx:$navigation_version",
             navigationui   : "androidx.navigation:navigation-ui-ktx:$navigation_version"
-    ]
-
-    androidDatabindingDependencies = [
-            adapters : "com.android.databinding:adapters:$adapters_version"
     ]
 
     androidXKaptDependencies = [

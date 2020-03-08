@@ -18,7 +18,7 @@ fun visibleInvisible(view: View, show: Boolean) {
 }
 
 @BindingAdapter("genderDrawable")
-fun ImageView.getGenderDrawable(gender: Gender) {
+fun ImageView.genderDrawable(gender: Gender) {
     val resourceId = when (gender) {
         Gender.NONE -> R.drawable.ic_gender_none
         Gender.MALE -> R.drawable.ic_gender_male
@@ -29,7 +29,7 @@ fun ImageView.getGenderDrawable(gender: Gender) {
 }
 
 @BindingAdapter("genderText")
-fun TextView.getGenderText(gender: Gender) {
+fun TextView.genderText(gender: Gender) {
     val resourceId = when (gender) {
         Gender.NONE -> R.string.gender_none
         Gender.MALE -> R.string.gender_male

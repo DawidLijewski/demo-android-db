@@ -3,7 +3,7 @@ package lijewski.demodb.data.source.mapper
 import lijewski.demodb.data.source.entity.EmployeeEntity
 import lijewski.demodb.domain.model.Employee
 import lijewski.demodb.domain.model.Gender
-import java.util.*
+import java.time.LocalDate
 import javax.inject.Inject
 
 class EmployeeMapper @Inject constructor(private val addressMapper: AddressMapper) :
@@ -13,7 +13,7 @@ class EmployeeMapper @Inject constructor(private val addressMapper: AddressMappe
             id = type.id, //TODO: check necessity of mapping with Autogenerate annotation
             firstName = type.firstName,
             lastName = type.lastName,
-            birthdate = Date(type.birthdate),
+            birthdate = LocalDate.ofEpochDay(type.birthdate),
             gender = Gender.values()[type.gender],
             addressList = addressMapper.mapFromEntityList(type.addressList)
         )
@@ -24,7 +24,7 @@ class EmployeeMapper @Inject constructor(private val addressMapper: AddressMappe
             id = type.id, //TODO: check necessity of mapping with Autogenerate annotation
             firstName = type.firstName,
             lastName = type.lastName,
-            birthdate = type.birthdate.toGMTString(),
+            birthdate = type.birthdate.toEpochDay(),
             gender = type.gender.ordinal,
             addressList = addressMapper.mapToEntityList(type.addressList)
         )

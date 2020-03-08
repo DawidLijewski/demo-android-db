@@ -29,7 +29,9 @@ class MainFragment : DaggerFragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        
         with(mainViewModel) {
             isLoading.observe(viewLifecycleOwner, Observer {
                 it?.let {

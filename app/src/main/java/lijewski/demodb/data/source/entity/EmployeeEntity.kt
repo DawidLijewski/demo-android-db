@@ -13,7 +13,7 @@ data class EmployeeEntity(
     @SerializedName("id") var id: Int,
     @SerializedName("first_name") var firstName: String,
     @SerializedName("last_name") var lastName: String,
-    @SerializedName("birthdate") var birthdate: String, //TODO: change to Date
+    @SerializedName("birthdate") var birthdate: Long,
     @SerializedName("gender") var gender: Int,
     @SerializedName("adresses") var addressList: List<AddressEntity>
 ) : Parcelable

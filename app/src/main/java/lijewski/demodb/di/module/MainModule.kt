@@ -7,7 +7,7 @@ import lijewski.demodb.presentation.main.MainFragment
 import lijewski.demodb.presentation.search.SearchEmployeeFragment
 
 @Suppress("unused")
-@Module
+@Module(includes = [DialogModule::class])
 abstract class MainModule {
     @ContributesAndroidInjector
     abstract fun contributeMainFragment(): MainFragment
