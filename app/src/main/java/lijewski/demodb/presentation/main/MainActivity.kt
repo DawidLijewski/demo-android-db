@@ -7,11 +7,15 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.main_activity.*
 import lijewski.demodb.app.R
+import lijewski.demodb.presentation.add.AddEmployeeDialogFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector() = dispatchingAndroidInjector
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -27,7 +31,15 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
                     MainFragment.TAG
                 ).commit()
         }
+
+        fab.setOnClickListener {
+            openAddEmployeeDialog()
+        }
     }
 
-    override fun androidInjector() = dispatchingAndroidInjector
+    private fun openAddEmployeeDialog() {
+        val addEmployeeDialogFragment = AddEmployeeDialogFragment()
+        supportFragmentManager.let { addEmployeeDialogFragment.show(it, AddEmployeeDialogFragment.TAG) }
+    }
+
 }

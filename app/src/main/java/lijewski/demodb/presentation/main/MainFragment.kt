@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import lijewski.demodb.app.R
-import lijewski.demodb.presentation.add.AddEmployeeDialogFragment
 import javax.inject.Inject
 
 class MainFragment : DaggerFragment() {
@@ -41,15 +39,5 @@ class MainFragment : DaggerFragment() {
 
             //TODO: load employees into recyclerview
         }
-
-        fab.setOnClickListener {
-            openAddEmployeeDialog()
-        }
-    }
-
-    private fun openAddEmployeeDialog() {
-        val addEmployeeDialogFragment = AddEmployeeDialogFragment()
-        addEmployeeDialogFragment.setTargetFragment(this, 0)
-        parentFragmentManager.let { addEmployeeDialogFragment.show(it, AddEmployeeDialogFragment.TAG) }
     }
 }
