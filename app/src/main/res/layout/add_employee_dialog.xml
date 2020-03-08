@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,6 +9,7 @@
         <variable
             name="viewModel"
             type="lijewski.demodb.presentation.add.AddEmployeeViewModel" />
+
         <import type="lijewski.demodb.databinding.BindingUtils" />
     </data>
 
@@ -15,42 +17,92 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/dialog_padding">
+        android:fitsSystemWindows="true">
 
-        <EditText
-            android:id="@+id/firstname_edit_text"
-            style="@style/SearchDialogEditTextStyle"
-            android:hint="@string/firstname_hint"
-            android:text="@={viewModel.firstName}">
-            <requestFocus />
-        </EditText>
-
-        <EditText
-            android:id="@+id/lastname_edit_text"
-            style="@style/SearchDialogEditTextStyle"
-            android:hint="@string/lastname_hint"
-            android:text="@={viewModel.lastName}">
-        </EditText>
-
-        <DatePicker
-            android:id="@+id/birthdate_date_picker"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
-            android:year="@={viewModel.birthDate.year}"
-            android:month="@={viewModel.birthDate.month}"
-            android:day="@={viewModel.birthDate.date}"/>
+            android:layout_height="?attr/actionBarSize">
 
-        <Spinner
-            android:id="@+id/gender_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/genders"
-            android:spinnerMode="dropdown"
-            android:selectedItemPosition="@={BindingUtils.genderToPosition(viewModel.gender)}">
-        </Spinner>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <!-- Address -->
+                <ImageButton
+                    android:id="@+id/btn_close"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@android:color/white"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/addemployee_dialog_title"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="@string/save"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/firstname_edit_text"
+                    style="@style/SearchDialogEditTextStyle"
+                    android:hint="@string/firstname_hint"
+                    android:text="@={viewModel.firstName}">
+
+                    <requestFocus />
+                </EditText>
+
+                <EditText
+                    android:id="@+id/lastname_edit_text"
+                    style="@style/SearchDialogEditTextStyle"
+                    android:hint="@string/lastname_hint"
+                    android:text="@={viewModel.lastName}" />
+
+                <DatePicker
+                    android:id="@+id/birthdate_date_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:datePickerMode="spinner"
+                    android:day="@={viewModel.birthDate.date}"
+                    android:month="@={viewModel.birthDate.month}"
+                    android:year="@={viewModel.birthDate.year}" />
+
+                <Spinner
+                    android:id="@+id/gender_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/genders"
+                    android:selectedItemPosition="@={BindingUtils.genderToPosition(viewModel.gender)}"
+                    android:spinnerMode="dropdown" />
+
+                <!-- Address -->
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

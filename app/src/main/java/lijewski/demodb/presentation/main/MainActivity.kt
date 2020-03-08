@@ -2,6 +2,7 @@ package lijewski.demodb.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -9,6 +10,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 import lijewski.demodb.app.R
 import lijewski.demodb.presentation.add.AddEmployeeDialogFragment
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
@@ -39,7 +41,9 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     private fun openAddEmployeeDialog() {
         val addEmployeeDialogFragment = AddEmployeeDialogFragment()
-        supportFragmentManager.let { addEmployeeDialogFragment.show(it, AddEmployeeDialogFragment.TAG) }
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        transaction.add(android.R.id.content, addEmployeeDialogFragment).addToBackStack(null).commit()
     }
 
 }

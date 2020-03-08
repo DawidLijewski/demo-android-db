@@ -9,4 +9,9 @@
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
     <string name="gender_other">Other</string>
+    <string name="save">Save</string>
+    <string name="addemployee_dialog_title">Add new employee</string>
+    <string name="error">Error</string>
+    <string name="error_empty_field">All information fields must be filled out before you can click SAVE!</string>
+    <string name="ok">OK</string>
 </resources>

@@ -55,7 +55,7 @@ class AddEmployeeViewModel @Inject constructor(
                 employeeMediator.value?.gender != Gender.NONE
     }
 
-    fun addNewEmployees() {
+    fun addNewEmployee() {
         employeeMediator.value?.let { employee ->
             isLoading.value = true
             addEmployeeUseCase.newEmployee = employee

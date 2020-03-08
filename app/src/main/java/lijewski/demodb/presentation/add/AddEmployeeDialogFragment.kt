@@ -1,12 +1,16 @@
 package lijewski.demodb.presentation.add
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerDialogFragment
+import kotlinx.android.synthetic.main.add_employee_dialog.*
 import lijewski.demodb.app.R
 import lijewski.demodb.app.databinding.AddEmployeeDialogBinding
 import javax.inject.Inject
@@ -40,4 +44,36 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
         return binding.root
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog: Dialog = super.onCreateDialog(savedInstanceState)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        return dialog
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn_close.setOnClickListener {
+            dismiss()
+        }
+        btn_save.setOnClickListener {
+            if (addEmployeeViewModel.checkIsNewEmployeeCorrect()) {
+                addEmployeeViewModel.addNewEmployee()
+            } else {
+                showErrorDialog()
+            }
+        }
+    }
+
+    private fun showErrorDialog() {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setTitle(R.string.error)
+                .setMessage(R.string.error_empty_field)
+                .setPositiveButton(R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
 }
