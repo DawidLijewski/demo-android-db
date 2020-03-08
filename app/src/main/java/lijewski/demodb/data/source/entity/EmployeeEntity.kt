@@ -14,7 +14,7 @@ data class EmployeeEntity(
     @SerializedName("first_name") var firstName: String,
     @SerializedName("last_name") var lastName: String,
     @SerializedName("birthdate") var birthdate: String, //TODO: change to Date
-    @SerializedName("gender") var gender: String, //TODO: change to enum
+    @SerializedName("gender") var gender: Int,
     @SerializedName("adresses") var addressList: List<AddressEntity>
 ) : Parcelable
 

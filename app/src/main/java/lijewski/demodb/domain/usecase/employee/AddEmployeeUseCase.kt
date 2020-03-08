@@ -8,8 +8,8 @@ import javax.inject.Inject
 class AddEmployeeUseCase @Inject constructor(
     private val employeeRepository: EmployeeRepository
 ) : BaseUseCase<Unit>() {
-    lateinit var employee: Employee
+    lateinit var newEmployee: Employee
     override suspend fun executeOnBackground() {
-        return employeeRepository.addEmployee(employee)
+        return employeeRepository.addEmployee(newEmployee)
     }
 }

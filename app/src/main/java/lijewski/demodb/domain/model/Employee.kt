@@ -1,11 +1,13 @@
 package lijewski.demodb.domain.model
 
+import java.util.*
+
 data class Employee(
-    val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val birthdate: String, //TODO: change to Date
-    val gender: String, //TODO: change to enum
-    val addressList: List<Address>
+    var id: Int,
+    var firstName: String = "",
+    var lastName: String,
+    var birthdate: Date, //TODO: change to Date
+    var gender: Gender, //TODO: change to enum
+    var addressList: List<Address>
 )
 //TODO: add created, modified, and usernames who performed such operations fields

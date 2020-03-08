@@ -8,9 +8,9 @@ import javax.inject.Inject
 class GetEmployeeUseCase @Inject constructor(
     private val employeeRepository: EmployeeRepository
 ) : BaseUseCase<List<Employee>>() {
-    lateinit var firstName: String
-    lateinit var lastName: String
+    lateinit var employeeQuery: Employee
     override suspend fun executeOnBackground(): List<Employee> {
-        return employeeRepository.getEmployee(firstName, lastName)
+        //TODO: refactor into handling Employee instrad of names
+        return employeeRepository.getEmployee(employeeQuery.firstName, employeeQuery.lastName)
     }
 }
