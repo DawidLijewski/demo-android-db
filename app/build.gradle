@@ -20,6 +20,9 @@ dependencies {
     implementation androidXDependencies.values()
     kapt androidXKaptDependencies.values()
 
+    //Databinding
+    implementation androidDatabindingDependencies.values()
+
     //Coroutines
     implementation coroutinesDependencies.values()
 
