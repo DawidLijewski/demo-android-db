@@ -1,10 +1,10 @@
-package lijewski.demodb.presentation.main
+package lijewski.demodb.presentation.dashboard
 
 import lijewski.demodb.domain.usecase.employee.GetAllEmployeesUseCase
 import lijewski.demodb.presentation.base.BaseEmployeeViewModel
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class DashboardViewModel @Inject constructor(
     private val getAllEmployeesUseCase: GetAllEmployeesUseCase
 ) : BaseEmployeeViewModel() {
 

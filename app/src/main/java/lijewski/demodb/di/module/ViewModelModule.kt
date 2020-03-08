@@ -8,7 +8,7 @@ import dagger.multibindings.IntoMap
 import lijewski.demodb.di.factory.ViewModelFactory
 import lijewski.demodb.di.key.ViewModelKey
 import lijewski.demodb.presentation.add.AddEmployeeViewModel
-import lijewski.demodb.presentation.main.MainViewModel
+import lijewski.demodb.presentation.dashboard.DashboardViewModel
 import lijewski.demodb.presentation.search.SearchEmployeeViewModel
 
 @Suppress("unused")
@@ -19,8 +19,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+    @ViewModelKey(DashboardViewModel::class)
+    abstract fun bindDashboardViewModel(mainViewModel: DashboardViewModel): ViewModel
 
     @Binds
     @IntoMap

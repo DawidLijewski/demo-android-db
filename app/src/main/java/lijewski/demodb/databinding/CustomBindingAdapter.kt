@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import lijewski.demodb.app.R
 import lijewski.demodb.domain.model.Gender
+import java.time.LocalDate
+import java.time.Period
 
 @BindingAdapter("visibleGone")
 fun visibleGone(view: View, show: Boolean) {
@@ -37,4 +39,14 @@ fun TextView.genderText(gender: Gender) {
         Gender.OTHER -> R.string.gender_other
     }
     setText(resourceId)
+}
+
+@BindingAdapter("calculateAge")
+fun TextView.calculateAge(localDate: LocalDate?) {
+    val currentDate = LocalDate.now()
+    text = if ((localDate != null) && (currentDate != null)) {
+        Period.between(localDate, currentDate).years.toString()
+    } else {
+        "--"
+    }
 }

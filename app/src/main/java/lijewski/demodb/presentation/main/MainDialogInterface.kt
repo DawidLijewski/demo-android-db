@@ -1,5 +1,5 @@
 package lijewski.demodb.presentation.main
 
-interface DialogInterface {
+interface MainDialogInterface {
     fun onCloseDialog()
 }

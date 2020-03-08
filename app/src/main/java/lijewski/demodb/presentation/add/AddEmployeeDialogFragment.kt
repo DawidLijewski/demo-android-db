@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.add_employee_dialog.*
 import lijewski.demodb.app.R
 import lijewski.demodb.app.databinding.AddEmployeeDialogBinding
 import lijewski.demodb.domain.model.Employee
-import lijewski.demodb.presentation.main.DialogInterface
+import lijewski.demodb.presentation.main.MainDialogInterface
+import timber.log.Timber
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -31,7 +32,7 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    lateinit var dialogInterface: DialogInterface
+    lateinit var mainDialogInterface: MainDialogInterface
 
     private val maxDate: Long = getCalendarMaxDate()
 
@@ -81,10 +82,12 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
         }
 
         addEmployeeViewModel.error.observe(viewLifecycleOwner, Observer {
-            showSaveErrorDialog()
+            Timber.e(it)
+            showSaveErrorToast()
         })
         addEmployeeViewModel.eventAddSuccess.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let {
+                showSaveSuccessToast()
                 handleDismiss()
             }
         })
@@ -109,7 +112,11 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
         }
     }
 
-    private fun showSaveErrorDialog() {
+    private fun showSaveSuccessToast() {
+        Toast.makeText(context, R.string.error_saving_data, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showSaveErrorToast() {
         Toast.makeText(context, R.string.error_saving_data, Toast.LENGTH_SHORT).show()
     }
 
@@ -128,7 +135,7 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
     }
 
     private fun handleDismiss() {
-        dialogInterface.onCloseDialog()
+        mainDialogInterface.onCloseDialog()
         dismiss()
     }
 }
