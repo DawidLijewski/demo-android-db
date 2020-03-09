@@ -47,5 +47,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:visibleGone="@{viewModel.isLoading}" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fulllist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_default_margin"
+            android:onClick="@{() -> viewModel.loadAllEmployeesFromLocal()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/recycler_view"
+            app:srcCompat="@android:drawable/ic_menu_agenda" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

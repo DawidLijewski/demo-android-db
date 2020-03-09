@@ -38,8 +38,8 @@ class EmployeeListAdapter(private val onItemClickedListener: OnItemClickedListen
     }
 
     fun updateEmployeeList(newEmployeeList: List<Employee>?) {
+        this.employeeList.clear()
         if (newEmployeeList == null || newEmployeeList.isEmpty()) {
-            this.employeeList.clear()
             notifyDataSetChanged()
         } else {
             this.employeeList.addAll(0, newEmployeeList)
