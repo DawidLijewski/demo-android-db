@@ -1,21 +1,21 @@
 package lijewski.demodb.data.source.entity
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "employees")
+@Entity(tableName = "employees_table")
 @Parcelize
 data class EmployeeEntity(
     @PrimaryKey(autoGenerate = true)
-    @SerializedName("id") var id: Int,
-    @SerializedName("first_name") var firstName: String,
-    @SerializedName("last_name") var lastName: String,
-    @SerializedName("birthdate") var birthdate: String, //TODO: change to Date
-    @SerializedName("gender") var gender: String, //TODO: change to enum
-    @SerializedName("adresses") var addressList: List<AddressEntity>
+    @ColumnInfo(name ="id") var id: Int = 0,
+    @ColumnInfo(name ="first_name") val firstName: String,
+    @ColumnInfo(name ="last_name") val lastName: String,
+    @ColumnInfo(name ="birthdate") val birthdate: Long,
+    @ColumnInfo(name ="gender") val gender: Int,
+    @ColumnInfo(name ="adresses") val addressList: List<AddressEntity>
 ) : Parcelable
 
 //TODO: add created, modified, and usernames who performed such operations fields

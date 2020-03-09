@@ -5,13 +5,28 @@ import lijewski.demodb.data.source.entity.EmployeeEntity
 
 @Dao
 interface EmployeeDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEmployee(employee: EmployeeEntity): Long
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun addEmployee(employee: EmployeeEntity)
+
+    @Insert(onConflict = OnConflictStrategy.ABORT) //TODO: check OnConflictStrategy.IGNORE
+    suspend fun addEmployee(employeeList: List<EmployeeEntity>)
 
     @Delete
-    suspend fun deleteEmployee(employee: EmployeeEntity): Int
+    suspend fun deleteEmployee(employee: EmployeeEntity)
 
-    @Query("SELECT * from employees ORDER BY id")
-    suspend fun selectAllEmployees(): List<EmployeeEntity>
+    @Delete
+    suspend fun deleteEmployee(employeeList: List<EmployeeEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun editEmployee(employee: EmployeeEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun editEmployee(employeeList: List<EmployeeEntity>)
+
+    @Query("SELECT * from employees_table WHERE first_name = :firstName AND last_name = :lastName ORDER BY id")
+    suspend fun getEmployee(firstName: String, lastName: String): List<EmployeeEntity>
+
+    @Query("SELECT * from employees_table ORDER BY id")
+    suspend fun getAllEmployees(): List<EmployeeEntity>
 
 }

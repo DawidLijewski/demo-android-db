@@ -2,7 +2,7 @@ package lijewski.demodb.app.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import lijewski.demodb.presentation.main.MainViewModel
+import lijewski.demodb.presentation.dashboard.MainViewModel
 import lijewski.demodb.utils.CoroutineTestRule
 import org.junit.Before
 import org.junit.Rule

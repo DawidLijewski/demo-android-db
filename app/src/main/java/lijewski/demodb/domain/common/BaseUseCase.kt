@@ -39,6 +39,7 @@ abstract class BaseUseCase<T>() {
     class Request<T> {
         private var onComplete: ((T) -> Unit)? = null
         private var onError: ((Throwable) -> Unit)? = null
+        private var onCancel: ((CancellationException) -> Unit)? = null
 
         fun onComplete(block: (T) -> Unit) {
             onComplete = block
@@ -48,12 +49,20 @@ abstract class BaseUseCase<T>() {
             onError = block
         }
 
+        fun onCancel(block: (CancellationException) -> Unit) {
+            onCancel = block
+        }
+
         operator fun invoke(result: T) {
             onComplete?.invoke(result)
         }
 
         operator fun invoke(throwable: Throwable) {
             onError?.invoke(throwable)
+        }
+
+        operator fun invoke(error: CancellationException) {
+            onCancel?.invoke(error)
         }
     }
 }

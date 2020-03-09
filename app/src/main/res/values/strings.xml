@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">TemplateAndroid</string>
+    <string name="app_name">Android DB Demo</string>
+
+    <string name="firstname_hint">First name</string>
+    <string name="lastname_hint">Last name</string>
+    <string name="birthdate_hint">Birthdate</string>
+    <string name="gender_hint">Gender:&#160;</string>
+    <string name="gender_none">-</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
+    <string name="save">Save</string>
+    <string name="addemployee_dialog_title">Add new employee</string>
+    <string name="error">Error</string>
+    <string name="error_empty_field">All information fields must be filled out before you can click SAVE!</string>
+    <string name="error_fetching_data">Failed to fetch new data!</string>
+    <string name="error_saving_data">Failed to save new employee!</string>
+    <string name="error_search_data">Error during search operation!</string>
+    <string name="success_saving_data">New employee data saved successfully!</string>
+    <string name="ok">OK</string>
+    <string name="age_label">Age:&#160;</string>
+    <string name="no_query_results">No query results found</string>
+    <string name="search">Search</string>
+
+    <string name="space">\u00A0</string>
 </resources>

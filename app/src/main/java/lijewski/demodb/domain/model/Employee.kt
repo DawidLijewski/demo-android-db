@@ -1,11 +1,16 @@
 package lijewski.demodb.domain.model
 
+import java.time.LocalDate
+
 data class Employee(
-    val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val birthdate: String, //TODO: change to Date
-    val gender: String, //TODO: change to enum
-    val addressList: List<Address>
-)
-//TODO: add created, modified, and usernames who performed such operations fields
+    var firstName: String = "",
+    var lastName: String = "",
+    var birthdate: LocalDate = LocalDate.now(),
+    var gender: Gender = Gender.NONE,
+    var addressList: List<Address> = emptyList()
+) {
+    companion object {
+        const val MAX_AGE: Long = 18
+    }
+}
+//TODO: add created, modified dates, and usernames who performed such operations fields

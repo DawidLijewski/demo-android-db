@@ -20,4 +20,21 @@ interface Mapper<E, D> {
      */
     fun mapToEntity(type: D): E
 
+    /**
+     * Map a List of [E] instance to a List of [D] instance
+     */
+    fun mapFromEntityList(typeList: List<E>): List<D> {
+        return typeList.map {
+            mapFromEntity(it)
+        }
+    }
+
+    /**
+     * Map a List of [D] instance to a List of [E] instance
+     */
+    fun mapToEntityList(typeList: List<D>): List<E> {
+        return typeList.map {
+            mapToEntity(it)
+        }
+    }
 }
