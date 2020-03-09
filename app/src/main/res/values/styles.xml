@@ -5,7 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/grey_300</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -14,50 +13,4 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-    <style name="SearchDialogEditTextStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:importantForAutofill">no</item>
-        <item name="android:inputType">text</item>
-        <item name="android:focusable">true</item>
-        <item name="android:focusableInTouchMode">true</item>
-    </style>
-
-    <style name="ResultCardStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardElevation">@dimen/card_elevation</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardBackgroundColor">@android:color/white</item>
-    </style>
-
-    <style name="ResultCardTextStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:lines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textSize">@dimen/card_text_size</item>
-        <item name="layout_constrainedWidth">true</item>
-        <item name="layout_constraintWidth_default">spread</item>
-        <item name="android:textAlignment">viewStart</item>
-    </style>
-
-    <style name="ResultCardTextStyle.Header" parent="ResultCardTextStyle">
-        <item name="android:textSize">@dimen/card_text_header_size</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:lines">2</item>
-    </style>
-
-    <style name="ResultCardTextStyle.Header.LastName" parent="ResultCardTextStyle.Header">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="SearchEditTextStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:lines">1</item>
-    </style>
-    
 </resources>

@@ -4,41 +4,28 @@ apply from: '../buildsystem/android_commons.gradle'
 
 android {
     defaultConfig {
-        applicationId "lijewski.demodb"
+        applicationId "lijewski.template"
         buildConfigField 'String', 'BASE_URL', "\"https://itunes.apple.com/\""
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
     }
 }
 
 dependencies {
     // AndroidX
     implementation androidXDependencies.values()
-    kapt androidXKaptDependencies.values()
 
     //Coroutines
     implementation coroutinesDependencies.values()
-
-    //Databinding
-    implementation androidDatabindingDependencies.values()
 
     // Dagger
     implementation daggerDependencies.values()
     kapt daggerKaptDependencies.values()
 
-    // Room
-    implementation roomDependencies.values()
-    kapt roomKaptDependencies.values()
-
-    // Gson
-    implementation gsonDependencies.values()
-
     // Timber
     implementation loggingDependencies.timber
+
+    //Glide
+    implementation glideDependencies.glide
+    kapt glideDependencies.glideKapt
 
     // Testing
     testImplementation testDependencies.values()
