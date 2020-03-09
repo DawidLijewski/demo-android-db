@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cbf32bc292a0b43db1857632d707719b",
+    "identityHash": "05a0937304e57022b199f050c64a9b4c",
     "entities": [
       {
-        "tableName": "employees",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `firstName` TEXT NOT NULL, `lastName` TEXT NOT NULL, `birthdate` INTEGER NOT NULL, `gender` INTEGER NOT NULL, `addressList` TEXT NOT NULL)",
+        "tableName": "employees_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, `birthdate` INTEGER NOT NULL, `gender` INTEGER NOT NULL, `adresses` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -16,13 +16,13 @@
           },
           {
             "fieldPath": "firstName",
-            "columnName": "firstName",
+            "columnName": "first_name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "lastName",
-            "columnName": "lastName",
+            "columnName": "last_name",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -40,7 +40,7 @@
           },
           {
             "fieldPath": "addressList",
-            "columnName": "addressList",
+            "columnName": "adresses",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -58,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cbf32bc292a0b43db1857632d707719b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '05a0937304e57022b199f050c64a9b4c')"
     ]
   }
 }

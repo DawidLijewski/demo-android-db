@@ -16,5 +16,6 @@
     <dimen name="list_side_padding">4dp</dimen>
 
     <dimen name="search_fragment_height">96dp</dimen>
+    <dimen name="search_btn_margin">8dp</dimen>
 
 </resources>

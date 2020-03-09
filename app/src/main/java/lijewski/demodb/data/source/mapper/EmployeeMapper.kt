@@ -10,7 +10,6 @@ class EmployeeMapper @Inject constructor(private val addressMapper: AddressMappe
     Mapper<EmployeeEntity, Employee> {
     override fun mapFromEntity(type: EmployeeEntity): Employee {
         return Employee(
-            id = type.id, //TODO: check necessity of mapping with Autogenerate annotation
             firstName = type.firstName,
             lastName = type.lastName,
             birthdate = LocalDate.ofEpochDay(type.birthdate),
@@ -21,7 +20,6 @@ class EmployeeMapper @Inject constructor(private val addressMapper: AddressMappe
 
     override fun mapToEntity(type: Employee): EmployeeEntity {
         return EmployeeEntity(
-            id = type.id, //TODO: check necessity of mapping with Autogenerate annotation
             firstName = type.firstName,
             lastName = type.lastName,
             birthdate = type.birthdate.toEpochDay(),

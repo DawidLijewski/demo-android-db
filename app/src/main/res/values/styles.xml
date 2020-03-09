@@ -15,7 +15,7 @@
     </style>
 
     <style name="SearchDialogEditTextStyle">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:importantForAutofill">no</item>
         <item name="android:inputType">text</item>
@@ -53,4 +53,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="SearchEditTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:lines">1</item>
+    </style>
+    
 </resources>

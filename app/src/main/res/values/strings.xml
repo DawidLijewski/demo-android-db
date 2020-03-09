@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TemplateAndroid</string>
+    <string name="app_name">Android DB Demo</string>
 
     <string name="firstname_hint">First name</string>
     <string name="lastname_hint">Last name</string>
@@ -20,6 +20,7 @@
     <string name="ok">OK</string>
     <string name="age_label">Age:&#160;</string>
     <string name="no_query_results">No query results found</string>
+    <string name="search">Search</string>
 
     <string name="space">\u00A0</string>
 </resources>

@@ -2,6 +2,7 @@ package lijewski.demodb.presentation.search
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import lijewski.demodb.domain.model.Employee
 import lijewski.demodb.domain.usecase.employee.GetEmployeeUseCase
 import lijewski.demodb.presentation.base.BaseEmployeeViewModel
@@ -11,54 +12,53 @@ class SearchViewModel @Inject constructor(
     private val getEmployeeUseCase: GetEmployeeUseCase
 ) : BaseEmployeeViewModel() {
 
-    val firstName: MutableLiveData<String> by lazy {
-        MutableLiveData<String>().also { it.value = "" }
-    }
-    val lastName: MutableLiveData<String> by lazy {
-        MutableLiveData<String>().also { it.value = "" }
+    val firstName = MutableLiveData<String>("")
+    val lastName = MutableLiveData<String>("")
+
+    val queryValid = MediatorLiveData<Boolean>().apply {
+        val validator = QueryValidator(::postValue)
+        addSource(firstName, validator as Observer<String>)
+        addSource(lastName, validator as Observer<String>)
     }
 
-    val employeeMediator = MediatorLiveData<Employee>()
-
-    init {
-        employeeMediator.addSource(firstName) {
-            if (it.isNotBlank()) {
-                employeeMediator.value?.firstName = it
-            }
+    private inner class QueryValidator(private val validationConsumer: (Boolean) -> Unit) :
+        Observer<String> {
+        override fun onChanged(value: String?) {
+            validationConsumer(
+                when {
+                    value == null -> false
+                    value.isNotBlank() -> true
+                    else -> false
+                }
+            )
         }
-        employeeMediator.addSource(lastName) {
-            if (it.isNotBlank()) {
-                employeeMediator.value?.lastName = it
-            }
+    }
+
+    fun startSearch() {
+        if (queryValid.value == true) {
+            searchEmployee(Employee(firstName = firstName.value!!, lastName = lastName.value!!))
         }
     }
 
-    fun checkIsQueryCorrect(): Boolean {
-        return employeeMediator.value?.firstName.isNullOrBlank() ||
-                employeeMediator.value?.lastName.isNullOrBlank()
-    }
-
-    fun searchEmployee() {
-        employeeMediator.value?.let { employee ->
-            isLoading.value = true
-            getEmployeeUseCase.employeeQuery = employee
-            getEmployeeUseCase.execute {
-                onComplete {
-                    handleSuccess(it)
-                }
-                onError {
-                    handleError(it)
-                }
-                onCancel {
-                    handleCancelation(it)
-                }
+    fun searchEmployee(employee: Employee) {
+        isLoading.value = true
+        getEmployeeUseCase.employeeQuery = employee
+        getEmployeeUseCase.execute {
+            onComplete {
+                handleSuccess(it)
+            }
+            onError {
+                handleError(it)
+            }
+            onCancel {
+                handleCancelation(it)
             }
         }
     }
 
     override fun onCleared() {
-        employeeMediator.removeSource(firstName)
-        employeeMediator.removeSource(lastName)
+        queryValid.removeSource(firstName)
+        queryValid.removeSource(lastName)
         getEmployeeUseCase.unsubscribe()
     }
 

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -64,11 +63,7 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
             handleDismiss()
         }
         btn_save.setOnClickListener {
-            if (addEmployeeViewModel.checkIsNewEmployeeCorrect()) {
-                addEmployeeViewModel.addNewEmployee()
-            } else {
-                showInputErrorDialog()
-            }
+            addEmployeeViewModel.addNewEmployee()
         }
 
         birthdate_date_picker.maxDate = maxDate
@@ -80,6 +75,10 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
         birthdate_date_picker.setOnDateChangedListener { _, year, monthOfYear, dayOfMonth ->
             addEmployeeViewModel.birthDate.value = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
         }
+
+        addEmployeeViewModel.newEmployeeValid.observe(viewLifecycleOwner, Observer {
+            btn_save.isEnabled = it
+        })
 
         addEmployeeViewModel.error.observe(viewLifecycleOwner, Observer {
             Timber.e(it)
@@ -98,18 +97,6 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
         val dialog: Dialog = super.onCreateDialog(savedInstanceState)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
-    }
-
-    private fun showInputErrorDialog() {
-        context?.let {
-            AlertDialog.Builder(it)
-                .setTitle(R.string.error)
-                .setMessage(R.string.error_empty_field)
-                .setPositiveButton(R.string.ok) { errorDialog, _ ->
-                    errorDialog.dismiss()
-                }
-                .show()
-        }
     }
 
     private fun showSaveSuccessToast() {

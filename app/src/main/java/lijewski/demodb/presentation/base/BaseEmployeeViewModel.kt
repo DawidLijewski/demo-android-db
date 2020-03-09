@@ -6,9 +6,15 @@ import lijewski.demodb.domain.model.Employee
 import java.util.concurrent.CancellationException
 
 abstract class BaseEmployeeViewModel : ViewModel() {
-    val isLoading: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>(false) }
-    val employeeList: MutableLiveData<List<Employee>> by lazy { MutableLiveData<List<Employee>>() }
-    val error: MutableLiveData<Throwable> by lazy { MutableLiveData<Throwable>() }
+    val isLoading: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>(false)
+    }
+    val employeeList: MutableLiveData<List<Employee>> by lazy {
+        MutableLiveData<List<Employee>>().apply { emptyList<Employee>() }
+    }
+    val error: MutableLiveData<Throwable> by lazy {
+        MutableLiveData<Throwable>()
+    }
 
     protected fun handleSuccess(employeeList: List<Employee>) {
         isLoading.value = false

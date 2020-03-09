@@ -59,8 +59,13 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
             })
 
             employeeList.observe(viewLifecycleOwner, Observer {
-                adapter.updateEmployeeList(it)
-                binding.recyclerView.smoothScrollToPosition(0)
+                if (it?.isNotEmpty() == true) {
+                    adapter.updateEmployeeList(it)
+                    binding.recyclerView.smoothScrollToPosition(0)
+                } else {
+                    handleEmptyEmployeeList()
+                }
+
             })
             error.observe(viewLifecycleOwner, Observer {
                 Timber.e(it)
@@ -76,6 +81,10 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
             employee.firstName,
             position
         )
+    }
+
+    private fun handleEmptyEmployeeList() {
+        Toast.makeText(context, R.string.no_query_results, Toast.LENGTH_SHORT).show()
     }
 
     private fun showFetchErrorToast() {
