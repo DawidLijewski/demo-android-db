@@ -37,8 +37,8 @@ class EmployeeRepositoryImpl @Inject constructor(
         employeeDao.deleteEmployee(employeeEntityList)
     }
 
-    override suspend fun getEmployee(firstName: String, lastName: String): List<Employee> {
-        val employeeEntityList = employeeDao.getEmployee(firstName, lastName)
+    override suspend fun getEmployee(employeeQuery: Employee): List<Employee> {
+        val employeeEntityList = employeeDao.getEmployeeByName(employeeQuery.firstName, employeeQuery.lastName)
         return employeeMapper.mapFromEntityList(employeeEntityList)
     }
 

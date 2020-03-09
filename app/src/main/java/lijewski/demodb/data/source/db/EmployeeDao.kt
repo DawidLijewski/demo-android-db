@@ -23,8 +23,8 @@ interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun editEmployee(employeeList: List<EmployeeEntity>)
 
-    @Query("SELECT * from employees_table WHERE first_name = :firstName AND last_name = :lastName ORDER BY id")
-    suspend fun getEmployee(firstName: String, lastName: String): List<EmployeeEntity>
+    @Query("SELECT * from employees_table WHERE first_name = :firstName OR last_name = :lastName ORDER BY id")
+    suspend fun getEmployeeByName(firstName: String, lastName: String): List<EmployeeEntity>
 
     @Query("SELECT * from employees_table ORDER BY id")
     suspend fun getAllEmployees(): List<EmployeeEntity>
