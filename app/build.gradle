@@ -23,6 +23,9 @@ dependencies {
     //Coroutines
     implementation coroutinesDependencies.values()
 
+    //Databinding
+    implementation androidDatabindingDependencies.values()
+
     // Dagger
     implementation daggerDependencies.values()
     kapt daggerKaptDependencies.values()

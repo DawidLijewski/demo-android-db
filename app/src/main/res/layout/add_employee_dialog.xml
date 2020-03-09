@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="@android:color/white">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -73,41 +74,62 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- First name -->
                 <EditText
                     android:id="@+id/firstname_edit_text"
                     style="@style/SearchDialogEditTextStyle"
                     android:hint="@string/firstname_hint"
-                    android:text="@={viewModel.firstName}">
+                    android:text="@={viewModel.firstName}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
                     <requestFocus />
                 </EditText>
 
+                <!-- Last name -->
                 <EditText
                     android:id="@+id/lastname_edit_text"
                     style="@style/SearchDialogEditTextStyle"
                     android:hint="@string/lastname_hint"
-                    android:text="@={viewModel.lastName}" />
+                    android:text="@={viewModel.lastName}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/firstname_edit_text"/>
 
+                <!-- Birthdate -->
                 <DatePicker
                     android:id="@+id/birthdate_date_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:datePickerMode="spinner" />
+                    android:datePickerMode="spinner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lastname_edit_text"/>
+
+                <!-- Gender -->
+                <TextView
+                    android:id="@+id/gender_hint_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_hint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate_date_picker"/>
 
                 <Spinner
-                    android:id="@+id/gender_edit_text"
+                    android:id="@+id/gender_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:entries="@array/genders"
                     android:selectedItemPosition="@={BindingUtils.genderToPosition(viewModel.gender)}"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintStart_toEndOf="@id/gender_hint_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate_date_picker"/>
 
                 <!-- Address -->
-            </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
 </layout>
