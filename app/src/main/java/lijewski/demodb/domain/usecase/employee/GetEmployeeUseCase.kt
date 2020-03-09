@@ -10,7 +10,6 @@ class GetEmployeeUseCase @Inject constructor(
 ) : BaseUseCase<List<Employee>>() {
     lateinit var employeeQuery: Employee
     override suspend fun executeOnBackground(): List<Employee> {
-        //TODO: refactor into handling Employee instead of names
-        return employeeRepository.getEmployee(employeeQuery.firstName, employeeQuery.lastName)
+        return employeeRepository.getEmployee(employeeQuery)
     }
 }

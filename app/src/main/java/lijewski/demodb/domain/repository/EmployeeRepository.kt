@@ -9,6 +9,6 @@ interface EmployeeRepository {
     suspend fun editEmployeeList(employeeList: List<Employee>)
     suspend fun removeEmployee(employee: Employee)
     suspend fun removeEmployeeList(employeeList: List<Employee>)
-    suspend fun getEmployee(firstName: String, lastName: String): List<Employee>
+    suspend fun getEmployee(employeeQuery: Employee): List<Employee>
     suspend fun selectAllEmployees(): List<Employee>
 }
