@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import lijewski.demodb.app.R
 import lijewski.demodb.app.databinding.ItemEmployeeBinding
 import lijewski.demodb.domain.model.Employee
-import java.util.*
 
 class EmployeeListAdapter(private val onItemClickedListener: OnItemClickedListener) :
     RecyclerView.Adapter<EmployeeListAdapter.EmployeeItemViewHolder>() {
-    private val employeeList = ArrayList<Employee>()
+    private var employeeList = emptyList<Employee>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,12 +37,9 @@ class EmployeeListAdapter(private val onItemClickedListener: OnItemClickedListen
     }
 
     fun updateEmployeeList(newEmployeeList: List<Employee>?) {
-        if (newEmployeeList == null || newEmployeeList.isEmpty()) {
-            this.employeeList.clear()
+        if (newEmployeeList != null && newEmployeeList.isNotEmpty()) {
+            employeeList = newEmployeeList
             notifyDataSetChanged()
-        } else {
-            this.employeeList.addAll(0, newEmployeeList)
-            notifyItemInserted(0)
         }
     }
 

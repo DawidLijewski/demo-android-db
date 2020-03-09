@@ -100,7 +100,7 @@ class AddEmployeeDialogFragment : DaggerDialogFragment() {
     }
 
     private fun showSaveSuccessToast() {
-        Toast.makeText(context, R.string.error_saving_data, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.success_saving_data, Toast.LENGTH_SHORT).show()
     }
 
     private fun showSaveErrorToast() {

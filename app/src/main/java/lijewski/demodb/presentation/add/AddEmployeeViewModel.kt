@@ -70,6 +70,7 @@ class AddEmployeeViewModel @Inject constructor(
     }
 
     private fun handleSuccessfulNewEmployee() {
+        isLoading.value = false
         eventAddSuccess.value = Event(Any())
     }
 
