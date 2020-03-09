@@ -17,9 +17,8 @@ class MainActivity : DaggerAppCompatActivity(), MainDialogInterface {
         setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
-            val fragment = DashboardFragment()
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, fragment,
+                .add(R.id.fragment_container, DashboardFragment(),
                     DashboardFragment.TAG
                 ).commit()
         }

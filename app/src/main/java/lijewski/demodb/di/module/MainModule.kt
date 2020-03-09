@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import lijewski.demodb.presentation.add.AddEmployeeDialogFragment
 import lijewski.demodb.presentation.dashboard.DashboardFragment
-import lijewski.demodb.presentation.search.SearchEmployeeFragment
+import lijewski.demodb.presentation.search.SearchFragment
 
 @Suppress("unused")
 @Module(includes = [DialogModule::class])
@@ -16,5 +16,5 @@ abstract class MainModule {
     abstract fun contributeAddEmployeeDialogFragment(): AddEmployeeDialogFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeSearchEmployeeFragment(): SearchEmployeeFragment
+    abstract fun contributeSearchFragment(): SearchFragment
 }

@@ -8,7 +8,7 @@ class DashboardViewModel @Inject constructor(
     private val getAllEmployeesUseCase: GetAllEmployeesUseCase
 ) : BaseEmployeeViewModel() {
 
-    fun returnAllEmployees() {
+    fun loadAllEmployeesFromLocal() {
         isLoading.value = true
         getAllEmployeesUseCase.execute {
             onComplete {

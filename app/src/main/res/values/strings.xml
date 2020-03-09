@@ -15,6 +15,7 @@
     <string name="error_empty_field">All information fields must be filled out before you can click SAVE!</string>
     <string name="error_fetching_data">Failed to fetch new data!</string>
     <string name="error_saving_data">Failed to save new employee!</string>
+    <string name="error_search_data">Error during search operation!</string>
     <string name="success_saving_data">New employee data saved successfully!</string>
     <string name="ok">OK</string>
     <string name="age_label">Age:&#160;</string>

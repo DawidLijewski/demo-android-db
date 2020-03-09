@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.dashboard_fragment.*
 import lijewski.demodb.app.R
+import lijewski.demodb.app.databinding.DashboardFragmentBinding
 import lijewski.demodb.domain.model.Employee
 import lijewski.demodb.presentation.adapter.EmployeeListAdapter
 import timber.log.Timber
@@ -26,6 +28,8 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
     @Inject
     lateinit var adapter: EmployeeListAdapter
 
+    private lateinit var binding: DashboardFragmentBinding
+
     private val dashboardViewModel: DashboardViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
     }
@@ -33,12 +37,20 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.dashboard_fragment, container, false)
+        binding = DataBindingUtil.inflate<DashboardFragmentBinding>(
+            inflater, R.layout.dashboard_fragment, container, false
+        ).apply {
+            viewModel = dashboardViewModel
+            lifecycleOwner = this@DashboardFragment
+            recyclerView.adapter = adapter
+        }
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        
+
         with(dashboardViewModel) {
             isLoading.observe(viewLifecycleOwner, Observer {
                 it?.let {
@@ -48,6 +60,7 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
 
             employeeList.observe(viewLifecycleOwner, Observer {
                 adapter.updateEmployeeList(it)
+                binding.recyclerView.smoothScrollToPosition(0)
             })
             error.observe(viewLifecycleOwner, Observer {
                 Timber.e(it)
@@ -57,7 +70,12 @@ class DashboardFragment : DaggerFragment(), EmployeeListAdapter.OnItemClickedLis
     }
 
     override fun onItemClicked(employee: Employee, position: Int) {
-        Timber.d("Clicked employee: %s %s, position nr: %d", employee.lastName, employee.firstName, position)
+        Timber.d(
+            "Clicked employee: %s %s, position nr: %d",
+            employee.lastName,
+            employee.firstName,
+            position
+        )
     }
 
     private fun showFetchErrorToast() {

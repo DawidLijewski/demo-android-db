@@ -9,7 +9,7 @@ import lijewski.demodb.di.factory.ViewModelFactory
 import lijewski.demodb.di.key.ViewModelKey
 import lijewski.demodb.presentation.add.AddEmployeeViewModel
 import lijewski.demodb.presentation.dashboard.DashboardViewModel
-import lijewski.demodb.presentation.search.SearchEmployeeViewModel
+import lijewski.demodb.presentation.search.SearchViewModel
 
 @Suppress("unused")
 @Module
@@ -29,6 +29,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SearchEmployeeViewModel::class)
-    abstract fun bindSearchEmployeeViewModel(searchEmployeeViewModel: SearchEmployeeViewModel):ViewModel
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchEmployeeViewModel(searchViewModel: SearchViewModel):ViewModel
 }

@@ -7,7 +7,7 @@ import lijewski.demodb.domain.usecase.employee.GetEmployeeUseCase
 import lijewski.demodb.presentation.base.BaseEmployeeViewModel
 import javax.inject.Inject
 
-class SearchEmployeeViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val getEmployeeUseCase: GetEmployeeUseCase
 ) : BaseEmployeeViewModel() {
 
@@ -44,8 +44,7 @@ class SearchEmployeeViewModel @Inject constructor(
             getEmployeeUseCase.employeeQuery = employee
             getEmployeeUseCase.execute {
                 onComplete {
-                    //handleSuccess(it)
-                    //TODO: handle successfull new employee
+                    handleSuccess(it)
                 }
                 onError {
                     handleError(it)
