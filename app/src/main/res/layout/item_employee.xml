@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="employeeObject"
+            type="lijewski.demodb.domain.model.Employee" />
+    </data>
+
+    <androidx.cardview.widget.CardView style="@style/ResultCardStyle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/padding_start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/card_content_start_padding"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/padding_end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/card_content_padding"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/padding_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="@dimen/card_content_padding"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/padding_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/card_content_padding"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lastname"
+                style="@style/ResultCardTextStyle.Header.LastName"
+                android:text="@{employeeObject.lastName.concat(@string/space)}"
+                app:layout_constraintStart_toEndOf="@+id/padding_start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/padding_top_guideline"
+                tools:text="Kowalski&#160;" />
+
+            <TextView
+                android:id="@+id/firstname"
+                style="@style/ResultCardTextStyle.Header"
+                android:text="@{employeeObject.firstName}"
+                app:layout_constraintEnd_toEndOf="@+id/padding_end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/lastname"
+                app:layout_constraintTop_toBottomOf="@+id/padding_top_guideline"
+                tools:text="Jan" />
+
+            <TextView
+                android:id="@+id/age_label"
+                style="@style/ResultCardTextStyle"
+                android:text="@string/age_label"
+                app:layout_constraintStart_toEndOf="@+id/padding_start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/firstname" />
+
+            <TextView
+                android:id="@+id/age"
+                style="@style/ResultCardTextStyle"
+                app:calculateAge="@{employeeObject.birthdate}"
+                app:layout_constraintStart_toEndOf="@+id/age_label"
+                app:layout_constraintTop_toBottomOf="@id/firstname"
+                tools:text="23" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

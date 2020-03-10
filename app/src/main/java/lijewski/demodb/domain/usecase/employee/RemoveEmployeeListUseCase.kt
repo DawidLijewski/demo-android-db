@@ -1,0 +1,15 @@
+package lijewski.demodb.domain.usecase.employee
+
+import lijewski.demodb.domain.common.BaseUseCase
+import lijewski.demodb.domain.model.Employee
+import lijewski.demodb.domain.repository.EmployeeRepository
+import javax.inject.Inject
+
+class RemoveEmployeeListUseCase @Inject constructor(
+    private val employeeRepository: EmployeeRepository
+) : BaseUseCase<Unit>() {
+    var employeeList: List<Employee> = arrayListOf()
+    override suspend fun executeOnBackground() {
+        return employeeRepository.removeEmployeeList(employeeList)
+    }
+}
