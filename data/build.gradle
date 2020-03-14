@@ -1,31 +1,26 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply from: '../buildsystem/android_commons.gradle'
 
 android {
     defaultConfig {
-        applicationId "lijewski.demodb.app"
-        buildConfigField 'String', 'BASE_URL', "\"https://itunes.apple.com/\""
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 }
 
 dependencies {
     implementation project(':domain')
-    implementation project(':data')
-
-    // AndroidX
-    implementation androidXDependencies.values()
-    kapt androidXKaptDependencies.values()
 
     //Coroutines
     implementation coroutinesDependencies.values()
 
-    //Databinding
-    implementation androidDatabindingDependencies.values()
-
     // Dagger
-    implementation daggerDependencies.values()
-    kapt daggerKaptDependencies.values()
+    implementation daggerDependencies.dagger
+    kapt daggerKaptDependencies.daggerKapt
 
     // Room
     implementation roomDependencies.values()
@@ -41,3 +36,4 @@ dependencies {
     testImplementation testDependencies.values()
     androidTestImplementation testAndroidDependencies.values()
 }
+
